@@ -12,7 +12,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import struct
 import sys
 import subprocess
-
+from pathlib import Path
 
 class HiYftGuiTool:
     def __init__(self, root):
@@ -545,14 +545,23 @@ class HiYftGuiTool:
             self.root.update_idletasks()
 
     def find_hi_yft_files(self, root_dir):
+        """
+        using pathlib and glob patterns to recursively find all '_hi.yft' files under 'stream' directories.
+        Args:
+            root_dir (str): root directory to start the search from.
+        
+        Returns:
+            List[str]: a list of all found '_hi.yft' files。
+        """
         hi_yft_files = []
-        for dirpath, dirnames, filenames in os.walk(root_dir):
-            if os.path.basename(dirpath).lower() == 'stream':
-                for file in filenames:
-                    if file.lower().endswith('.yft') and '_hi' in file.lower():
-                        hi_yft_files.append(os.path.join(dirpath, file))
+        root = Path(root_dir)
+        # using rglob to find all directories named 'stream'
+        for stream_dir in root.rglob('stream'):
+            if stream_dir.is_dir():
+                # using glob to find all files named '*_hi.yft'
+                for yft_file in stream_dir.glob('**/*_hi.yft'):
+                    hi_yft_files.append(str(yft_file))
         return hi_yft_files
-
     def get_original_file(self, hi_file):
         dirpath, hi_filename = os.path.split(hi_file)
         base_name, ext = os.path.splitext(hi_filename)
