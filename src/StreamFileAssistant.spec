@@ -2,7 +2,7 @@
 
 
 a = Analysis(
-    ['Duplicate_YFT_Cleaner.py'],
+    ['StreamFileAssistant.py'],
     pathex=[],
     binaries=[],
     datas=[],
@@ -22,7 +22,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    name='Duplicate_YFT_Cleaner',
+    name='StreamFileAssistant',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
