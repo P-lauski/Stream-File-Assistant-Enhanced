@@ -38,7 +38,7 @@ This tool, using Python and packaged to exe, is designed to clean up those extra
 
 ### Stream Duplicate Checker
 ![Stream Duplicate Checker Screenshot](pic_02.png)
-*Locate and resolve name collisions in MLO stream directories.*
+*Locate and resolve file collisions in stream directories.*
 
 ---
 
