@@ -1,4 +1,4 @@
-# Stream Module Management Assistant
+# Stream file Management Assistant
 
 ## Introduction
 
@@ -6,7 +6,7 @@ In the past, missing medium LODs often caused crashes, forcing many creators to 
 
 Big thanks to **packfile** ([fix for crashes when no medium LOD exists](https://github.com/citizenfx/fivem/pull/2965)), this workaround is no longer necessary, saving significant file space.
 
-This tool, using Python and packaged with CPython, is designed to clean up those extra, now unnecessary files, helping you optimize your stream resources. :smile:
+This tool, using Python and packaged to exe, is designed to clean up those extra, now unnecessary files, helping you optimize your stream resources. :smile:
 
 ---
 
