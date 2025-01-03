@@ -321,10 +321,13 @@ class YftCleaner:
     
     alias: YftCleaner
     parameter: translator (Translator)
+    parameter: size_margin_kb (float) - the allowed difference in KB for considering two files 'identical' if their hashes differ
     """
-    def __init__(self, translator: Translator):
+    def __init__(self, translator: Translator, size_margin_kb: float = 0.0):
         self._tr = translator
-        self.deletable_files = []  # List of tuples: [(file_path, size_str, status), ...]
+        self.deletable_files = []
+        # Margin in KB; if > 0, we allow a fallback "almost identical" check
+        self.size_margin_kb = size_margin_kb
 
     def find_hi_yft_files(self, root_dir: str):
         """
@@ -345,7 +348,6 @@ class YftCleaner:
     def scan_files(self, root_directory: str):
         """
         Main entry point for performing the scanning procedure.
-        Multi-threading with ThreadPoolExecutor can be added if needed.
         Return: List of tuples: [(file_path, size_str, status), ...]
 
         alias: scan_files
@@ -364,10 +366,12 @@ class YftCleaner:
 
     def process_file(self, hi_file: str):
         """
-        Perform logic for a given hi_file, including:
-          1. Compare with original file hash
-          2. Read header, check if RSC7 or RSC8
-          3. Check size status
+        Performs logic for a given hi_file, including:
+          1. Try to match with the original file (model.yft)
+          2. Compare hashes
+          3. If hash mismatch, optionally check if size difference is within margin_kb
+          4. If considered identical, read header, check RSC7/8, compute size, determine status, etc.
+
         Return: (file_path, size_str, status) or None
 
         alias: process_file
@@ -377,13 +381,42 @@ class YftCleaner:
         if not original_file or not os.path.isfile(original_file):
             return None
 
-        # Check if file contents are identical (hash)
+        # Step 1) Compute hashes
         hi_hash = self.compute_file_hash(hi_file)
         org_hash = self.compute_file_hash(original_file)
-        if not hi_hash or not org_hash or hi_hash != org_hash:
-            return None
 
-        # Read header to check
+        # We'll track difference in bytes if we use margin
+        diff_bytes = 0
+        used_margin = False
+
+        # Step 2) If hashes match, consider them identical
+        if hi_hash and org_hash and hi_hash == org_hash:
+            return self._process_identical_files(hi_file, diff_bytes=0)
+
+        # Step 3) If hashes mismatch, check if size difference is within user margin
+        if self.size_margin_kb > 0.0:
+            size_hi_bytes = os.path.getsize(hi_file)
+            size_org_bytes = os.path.getsize(original_file)
+            diff_bytes = abs(size_hi_bytes - size_org_bytes)
+            diff_kb = diff_bytes / 1024.0
+
+            if diff_kb <= self.size_margin_kb:
+                used_margin = True
+                return self._process_identical_files(hi_file, diff_bytes=diff_bytes)
+
+        # If neither matched nor within margin => not identical
+        return None
+
+    def _process_identical_files(self, hi_file: str, diff_bytes: int):
+        """
+        Helper method to handle the rest of the logic if hi_file is considered identical to its original.
+        Reads the header, checks resource type, calculates size/status, etc.
+
+        alias: _process_identical_files
+        parameter: hi_file (str)
+        parameter: diff_bytes (int) - difference in bytes if margin is used, otherwise 0
+        """
+        # Read header
         is_resource, physPages, virtPages = self.read_yft_header(hi_file)
 
         if is_resource:
@@ -395,25 +428,29 @@ class YftCleaner:
             max_mb = max(phys_mb, virt_mb)
             status = self.determine_status(max_mb)
             if status == self._tr.translate("status_oversize"):
-                # Explicitly set to "Oversize"
-                pass  # status already set to "Oversize"
+                pass
             elif status in [self._tr.translate("status_warning"), self._tr.translate("status_critical")]:
                 status += f" - {self._tr.translate('oversized_warning')}"
             else:
                 status += " - good"
-            return (hi_file, size_str, status)
         else:
+            # Not a recognized RSC resource, fall back to actual file size
             actual_size = os.path.getsize(hi_file)
             actual_mb = actual_size / (1024.0 * 1024.0)
             size_str = f"{actual_mb:.2f} MB"
             status = self.determine_status(actual_mb)
             if status == self._tr.translate("status_oversize"):
-                pass  # status already set to "Oversize"
+                pass
             elif status in [self._tr.translate("status_warning"), self._tr.translate("status_critical")]:
                 status += f" - {self._tr.translate('oversized_warning')}"
             else:
                 status += " - Unknown format"
-            return (hi_file, size_str, status)
+
+        # If diff_bytes > 0, append margin info to the status
+        if diff_bytes > 0:
+            status += f" [Margin used: diff={diff_bytes} bytes]"
+
+        return (hi_file, size_str, status)
 
     def get_original_file(self, hi_file: str):
         """
@@ -525,7 +562,7 @@ class StreamDuplicateChecker:
     """
     def __init__(self, translator: Translator):
         self._tr = translator
-        self.duplicate_files = {}  # e.g. { fileName: [location1, location2, ...], ... }
+        self.duplicate_files = {}
 
     def scan_stream_duplicates(self, stream_root_directory: str):
         """
@@ -589,11 +626,14 @@ class GUI_MAIN:
         self.translator = Translator(language_code="en")
         self.current_language = "en"
 
-        # Create YFT Cleaner and Stream Checker
-        self.yft_cleaner = YftCleaner(self.translator)
-        self.stream_checker = StreamDuplicateChecker(self.translator)
+        # Margin-related variables (checkbox + entry for KB)
+        self.enable_margin_var = tk.BooleanVar(value=False)     # Whether margin is enabled
+        self.size_margin_kb_var = tk.StringVar(value="0.0")     # Margin in KB as string
 
-        # Some variables
+        # Will be created after user hits 'Start Scan'
+        self.yft_cleaner = None
+        self.stream_checker = None
+
         self.root_directory = tk.StringVar()
         self.stream_root_directory = tk.StringVar()
         self.total_files = 0
@@ -692,6 +732,23 @@ class GUI_MAIN:
         )
         cmb_language.grid(row=0, column=4, sticky="w")
         cmb_language.bind("<<ComboboxSelected>>", self.change_language)
+
+        # ------------------------------
+        # Margin UI
+        # ------------------------------
+        frame_margin = ttk.Frame(self.tab_yft, padding=(0, 5))
+        frame_margin.pack(fill=tk.X)
+
+        check_margin = ttk.Checkbutton(
+            frame_margin,
+            text="Enable size margin (KB)",
+            variable=self.enable_margin_var
+        )
+        check_margin.grid(row=0, column=0, sticky="w")
+
+        entry_margin_kb = ttk.Entry(frame_margin, textvariable=self.size_margin_kb_var, width=10)
+        entry_margin_kb.grid(row=0, column=1, padx=(5, 0), sticky="w")
+        # ------------------------------
 
         frame_scan = ttk.Frame(self.tab_yft, padding=10)
         frame_scan.pack(fill=tk.X)
@@ -808,7 +865,6 @@ class GUI_MAIN:
         btn_save = ttk.Button(frame_actions, text=self.translate("stream_save_file_button"), command=self.save_stream_to_file)
         btn_save.pack(side=tk.LEFT, padx=5)
 
-
     # --------------------------------------#
     # YFT Cleaner Events
     # --------------------------------------#
@@ -828,6 +884,18 @@ class GUI_MAIN:
         
         alias: start_scan
         """
+        # Read margin settings
+        if self.enable_margin_var.get():
+            try:
+                margin_kb = float(self.size_margin_kb_var.get())
+            except ValueError:
+                margin_kb = 0.0
+        else:
+            margin_kb = 0.0
+
+        # Instantiate YftCleaner with user-chosen margin (in KB)
+        self.yft_cleaner = YftCleaner(self.translator, size_margin_kb=margin_kb)
+
         if not self.root_directory.get():
             messagebox.showwarning("Warning", self.translate("info_no_selected"))
             return
@@ -1156,6 +1224,9 @@ class GUI_MAIN:
         # Clear
         for item in self.stream_tree.get_children():
             self.stream_tree.delete(item)
+        if not self.stream_checker:
+            self.stream_checker = StreamDuplicateChecker(self.translator)
+
         self.stream_checker.duplicate_files.clear()
         self.total_stream_files = 0
         self.processed_stream_files = 0
