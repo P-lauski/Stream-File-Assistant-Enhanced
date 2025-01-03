@@ -16,6 +16,8 @@ This tool, using Python and packaged to exe, is designed to clean up those extra
 - Specifically designed to clean up duplicate-pasted files.
 - Scans for and identifies `_hi` YFT files that were created as a workaround for missing medium LODs.
 - Provides tools to select, review, and delete unnecessary duplicates.
+- What is size margin?
+  - Allows you to define a margin (in KB) for file size comparison when _hi files differ slightly from their counterparts.
 
 ### 2. Stream Duplicate Checker
 - Checks all `stream` directories for duplicate files, regardless of extension.
