@@ -89,6 +89,15 @@ class Translator:
                 "stream_info_save_success": "Duplicate file list saved to {}.",
                 "stream_info_save_fail": "Failed to save duplicate file list.",
                 "stream_select_column": "Select",
+                "manual_check_button": "Manual Check for Duplicates",
+                "stream_info_no_selected": "No directory selected.",
+                "stream_info_no_files": "No directory or invalid path selected.",
+                "stream_status_scanning": "Scanning...",
+                "stream_status_completed": "Scan Completed.",
+                "stream_status_error": "Error:",
+                "manual_check_results": "Manual Check Results:",
+                "not_found": "NOT FOUND",
+                "duplicates_label": "Duplicate(s) Found in:",
             },
             "zh_TW": {
                 "title": "YFT 檢查管理工具 by pgonintwitch",
@@ -124,7 +133,7 @@ class Translator:
                 "status_warning": "警告",
                 "status_critical": "危急",
                 "status_oversize": "過大",
-                "oversized_warning": "Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).",
+                "oversized_warning": "Oversized assets can and WILL lead to streaming issues (例如模型未載入/渲染)。",
                 "view_folder": "打開資料夾",
                 # Stream Duplicate Checker Translations
                 "stream_tab": "Stream 重複檔案檢查",
@@ -153,136 +162,18 @@ class Translator:
                 "stream_info_save_success": "重複檔案清單已保存到 {}。",
                 "stream_info_save_fail": "無法保存重複檔案清單。",
                 "stream_select_column": "選擇",
+                # Manual Duplicate Check texts
+                "manual_check_button": "手動重複檢查",
+                "stream_info_no_selected": "未選擇任何資料夾。",
+                "stream_info_no_files": "沒有可用的資料夾，或路徑無效。",
+                "stream_status_scanning": "掃描中...",
+                "stream_status_completed": "掃描完成。",
+                "stream_status_error": "錯誤：",
+                "manual_check_results": "手動重複檢查結果：",
+                "not_found": "未發現檔案",
+                "duplicates_label": "重複檔案位置：",
             },
-            "zh_CN": {
-                "title": "YFT 检查管理工具 by pgonintwitch",
-                "root_dir_label": "根目录路径：",
-                "browse_button": "浏览...",
-                "scan_button": "开始扫描",
-                "progress_label": "进度：{}/{}",
-                "select_all_button": "全选",
-                "select_column": "选择",
-                "model_name_column": "模型名称",
-                "path_column": "文件路径",
-                "size_column": "大小 (MB)",
-                "status_column": "状态",
-                "copy_clipboard_button": "复制列表到剪贴板",
-                "save_file_button": "保存列表到文件",
-                "delete_files_button": "删除选定的文件",
-                "status_ready": "准备就绪",
-                "status_scanning": "扫描中...",
-                "status_completed": "扫描完成。",
-                "status_error": "错误：",
-                "confirm_delete_title": "确认删除",
-                "confirm_delete_message": "确定要删除选定的 {} 个文件吗？",
-                "success_delete": "已成功删除 {} 个文件。",
-                "error_delete": "无法删除以下文件：\n{}",
-                "info_no_files": "没有可用的文件。",
-                "info_no_selected": "没有选择文件。",
-                "info_copy_success": "文件列表已复制到剪贴板。",
-                "info_copy_fail": "无法复制到剪贴板。",
-                "info_save_success": "文件列表已保存到 {}。",
-                "info_save_fail": "无法保存文件列表。",
-                "language_label": "语言：",
-                "status_ok": "正常",
-                "status_warning": "警告",
-                "status_critical": "危急",
-                "status_oversize": "过大",
-                "oversized_warning": "Oversized assets can and WILL lead to streaming issues (e.g., models not loading/rendering).",
-                "view_folder": "打开文件夹",
-                # Stream Duplicate Checker Translations
-                "stream_tab": "Stream 重复文件检查",
-                "stream_root_dir_label": "Stream 根目录路径：",
-                "stream_browse_button": "浏览...",
-                "stream_scan_button": "扫描重复文件",
-                "stream_progress_label": "进度：{}/{}",
-                "stream_duplicate_file_column": "重复文件名称",
-                "stream_locations_column": "所在位置",
-                "stream_select_all_button": "全选",
-                "stream_copy_clipboard_button": "复制重复文件到剪贴板",
-                "stream_save_file_button": "保存重复文件到文件",
-                "stream_delete_duplicates_button": "删除选定的重复文件",
-                "stream_status_ready": "准备就绪",
-                "stream_status_scanning": "扫描中...",
-                "stream_status_completed": "扫描完成。",
-                "stream_status_error": "错误：",
-                "stream_confirm_delete_title": "确认删除",
-                "stream_confirm_delete_message": "确定要删除选定的重复文件吗？",
-                "stream_success_delete": "已成功删除 {} 个重复文件。",
-                "stream_error_delete": "无法删除以下重复文件：\n{}",
-                "stream_info_no_duplicates": "未发现重复文件。",
-                "stream_info_no_selected": "未选择任何重复文件。",
-                "stream_info_copy_success": "重复文件列表已复制到剪贴板。",
-                "stream_info_copy_fail": "无法将重复文件列表复制到剪贴板。",
-                "stream_info_save_success": "重复文件列表已保存到 {}。",
-                "stream_info_save_fail": "无法保存重复文件列表。",
-                "stream_select_column": "选择",
-            },
-            "es": {
-                "title": "Herramienta de limpieza de YFT duplicados por pgonintwitch",
-                "root_dir_label": "Directorio Raíz:",
-                "browse_button": "Examinar...",
-                "scan_button": "Iniciar Escaneo",
-                "progress_label": "Progreso: {}/{}",
-                "select_all_button": "Seleccionar Todos",
-                "select_column": "Seleccionar",
-                "model_name_column": "Nombre del Modelo",
-                "path_column": "Ruta del Archivo",
-                "size_column": "Tamaño (MB)",
-                "status_column": "Estado",
-                "copy_clipboard_button": "Copiar Lista al Portapapeles",
-                "save_file_button": "Guardar Lista en Archivo",
-                "delete_files_button": "Eliminar Archivos Seleccionados",
-                "status_ready": "Listo",
-                "status_scanning": "Escaneando...",
-                "status_completed": "Escaneo Completado.",
-                "status_error": "Error:",
-                "confirm_delete_title": "Confirmar Eliminación",
-                "confirm_delete_message": "¿Está seguro de que desea eliminar los {} archivos seleccionados?",
-                "success_delete": "Se eliminaron {} archivos correctamente.",
-                "error_delete": "No se pudieron eliminar los siguientes archivos:\n{}",
-                "info_no_files": "No hay archivos disponibles.",
-                "info_no_selected": "No se han seleccionado archivos.",
-                "info_copy_success": "La lista de archivos se ha copiado al portapapeles.",
-                "info_copy_fail": "No se pudo copiar al portapapeles.",
-                "info_save_success": "La lista de archivos se guardó en {}.",
-                "info_save_fail": "No se pudo guardar la lista de archivos.",
-                "language_label": "Idioma:",
-                "status_ok": "OK",
-                "status_warning": "Advertencia",
-                "status_critical": "Crítico",
-                "status_oversize": "Excesivo",
-                "oversized_warning": "Los recursos de gran tamaño pueden causar problemas de streaming (como modelos que no se cargan o representan).",
-                "view_folder": "Ver Carpeta",
-                # Stream Duplicate Checker
-                "stream_tab": "Comprobador de Archivos Duplicados de Stream",
-                "stream_root_dir_label": "Directorio Raíz de Stream:",
-                "stream_browse_button": "Examinar...",
-                "stream_scan_button": "Escanear Duplicados",
-                "stream_progress_label": "Progreso: {}/{}",
-                "stream_duplicate_file_column": "Nombre de Archivo Duplicado",
-                "stream_locations_column": "Ubicaciones",
-                "stream_select_all_button": "Seleccionar Todos",
-                "stream_copy_clipboard_button": "Copiar Duplicados al Portapapeles",
-                "stream_save_file_button": "Guardar Duplicados en Archivo",
-                "stream_delete_duplicates_button": "Eliminar Duplicados Seleccionados",
-                "stream_status_ready": "Listo",
-                "stream_status_scanning": "Escaneando...",
-                "stream_status_completed": "Escaneo Completado.",
-                "stream_status_error": "Error:",
-                "stream_confirm_delete_title": "Confirmar Eliminación",
-                "stream_confirm_delete_message": "¿Está seguro de que desea eliminar los archivos duplicados seleccionados?",
-                "stream_success_delete": "Se eliminaron {} archivos duplicados correctamente.",
-                "stream_error_delete": "No se pudieron eliminar los siguientes archivos duplicados:\n{}",
-                "stream_info_no_duplicates": "No se encontraron archivos duplicados.",
-                "stream_info_no_selected": "No se han seleccionado archivos duplicados.",
-                "stream_info_copy_success": "La lista de archivos duplicados se copió al portapapeles.",
-                "stream_info_copy_fail": "No se pudo copiar la lista de archivos duplicados al portapapeles.",
-                "stream_info_save_success": "La lista de archivos duplicados se guardó en {}.",
-                "stream_info_save_fail": "No se pudo guardar la lista de archivos duplicados.",
-                "stream_select_column": "Seleccionar",
-            },
-            # You can add more languages here
+            # 可依需求增加其他語系
         }
 
     def set_language(self, language_code: str):
@@ -310,14 +201,12 @@ class Translator:
             return text.format(*args)
         return text
 
-
 # -------------------------#
 # 2. YFT Cleaner Logic
 # -------------------------#
 class YftCleaner:
     """
     A class dedicated to handling YFT ( *_hi.yft ) file scanning, size and status checking, deletion, etc.
-    Originally, all YFT Cleaner-related functions have been gathered here.
     
     alias: YftCleaner
     parameter: translator (Translator)
@@ -326,7 +215,6 @@ class YftCleaner:
     def __init__(self, translator: Translator, size_margin_kb: float = 0.0):
         self._tr = translator
         self.deletable_files = []
-        # Margin in KB; if > 0, we allow a fallback "almost identical" check
         self.size_margin_kb = size_margin_kb
 
     def find_hi_yft_files(self, root_dir: str):
@@ -603,7 +491,6 @@ class StreamDuplicateChecker:
                         stream_files.append(str(file))
         return stream_files
 
-
 # ----------------------------------------#
 # 4. GUI and Main Controller
 # ----------------------------------------#
@@ -865,6 +752,15 @@ class GUI_MAIN:
         btn_save = ttk.Button(frame_actions, text=self.translate("stream_save_file_button"), command=self.save_stream_to_file)
         btn_save.pack(side=tk.LEFT, padx=5)
 
+        frame_manual = ttk.Frame(self.tab_stream, padding=10)
+        frame_manual.pack(fill=tk.BOTH, expand=True)
+
+        btn_manual_check = ttk.Button(frame_manual, text=self.translate("manual_check_button"), command=self.check_manual_duplicates)
+        btn_manual_check.pack(anchor="e", pady=5)
+
+        self.txt_manual = tk.Text(frame_manual, height=10)
+        self.txt_manual.pack(fill=tk.BOTH, expand=True)
+
     # --------------------------------------#
     # YFT Cleaner Events
     # --------------------------------------#
@@ -884,7 +780,6 @@ class GUI_MAIN:
         
         alias: start_scan
         """
-        # Read margin settings
         if self.enable_margin_var.get():
             try:
                 margin_kb = float(self.size_margin_kb_var.get())
@@ -893,7 +788,6 @@ class GUI_MAIN:
         else:
             margin_kb = 0.0
 
-        # Instantiate YftCleaner with user-chosen margin (in KB)
         self.yft_cleaner = YftCleaner(self.translator, size_margin_kb=margin_kb)
 
         if not self.root_directory.get():
@@ -903,7 +797,6 @@ class GUI_MAIN:
             messagebox.showerror("Error", self.translate("info_no_files"))
             return
 
-        # Clear Tree
         for item in self.tree.get_children():
             self.tree.delete(item)
 
@@ -914,7 +807,6 @@ class GUI_MAIN:
         self.lbl_progress.config(text=self.translate("progress_label", 0, 0))
         self.status.set(self.translate("status_scanning"))
 
-        # Start a thread
         threading.Thread(target=self.scan_files_thread, daemon=True).start()
 
     def scan_files_thread(self):
@@ -972,12 +864,7 @@ class GUI_MAIN:
             except ValueError:
                 relative_path = dir_path
 
-            item_id = self.tree.insert(
-                "",
-                tk.END,
-                values=("☐", model_name, relative_path, size_str, status)
-            )
-            # Color the row based on status
+            item_id = self.tree.insert("", tk.END, values=("☐", model_name, relative_path, size_str, status))
             if status.startswith(self.translate("status_ok")):
                 self.tree.item(item_id, tags=("ok",))
                 self.tree.tag_configure("ok", background="lightgreen")
@@ -996,7 +883,7 @@ class GUI_MAIN:
 
     def handle_click_yft(self, event):
         """
-        Handle click event in the YFT TreeView. Used to toggle the checkbox in 'select' column.
+        處理 YFT TreeView 點選事件，用於切換選取框 (checkbox) 狀態。
         
         alias: handle_click_yft
         parameter: event (Event)
@@ -1005,7 +892,7 @@ class GUI_MAIN:
         if region != "cell":
             return
         column = self.tree.identify_column(event.x)
-        if column == "#1":  # 'select' column is #1
+        if column == "#1":
             row_id = self.tree.identify_row(event.y)
             if row_id:
                 current_value = self.tree.set(row_id, "select")
@@ -1014,7 +901,7 @@ class GUI_MAIN:
 
     def show_yft_context_menu(self, event):
         """
-        Show the right-click context menu for YFT items.
+        顯示 YFT 項目的右鍵選單。
         
         alias: show_yft_context_menu
         parameter: event (Event)
@@ -1029,7 +916,7 @@ class GUI_MAIN:
 
     def view_folder(self):
         """
-        Open the folder in the system file manager for the selected item.
+        在系統檔案總管中打開所選項目的資料夾。
         
         alias: view_folder
         """
@@ -1055,7 +942,7 @@ class GUI_MAIN:
 
     def get_selected_files_yft(self):
         """
-        Get the list of selected (☑) files from the YFT TreeView.
+        取得 YFT TreeView 中被選取 (☑) 的檔案列表。
         
         alias: get_selected_files_yft
         """
@@ -1071,7 +958,7 @@ class GUI_MAIN:
 
     def copy_to_clipboard_yft(self):
         """
-        Copy selected YFT files to clipboard.
+        將選中的 YFT 檔案路徑複製到剪貼簿。
         
         alias: copy_to_clipboard_yft
         """
@@ -1087,7 +974,7 @@ class GUI_MAIN:
 
     def save_to_file_yft(self):
         """
-        Save selected YFT files to a text file.
+        將選中的 YFT 檔案路徑儲存到文字檔。
         
         alias: save_to_file_yft
         """
@@ -1110,7 +997,7 @@ class GUI_MAIN:
 
     def delete_selected_files_yft(self):
         """
-        Delete the selected YFT files from the disk.
+        刪除 YFT TreeView 中選取的檔案 (對磁碟進行刪除)。
         
         alias: delete_selected_files_yft
         """
@@ -1119,10 +1006,7 @@ class GUI_MAIN:
             messagebox.showinfo("Info", self.translate("info_no_selected"))
             return
 
-        confirm = messagebox.askyesno(
-            self.translate("confirm_delete_title"),
-            self.translate("confirm_delete_message", len(selected_files))
-        )
+        confirm = messagebox.askyesno(self.translate("confirm_delete_title"), self.translate("confirm_delete_message", len(selected_files)))
         if not confirm:
             return
 
@@ -1132,7 +1016,6 @@ class GUI_MAIN:
             try:
                 os.remove(fp)
                 deleted.append(fp)
-                # Remove from TreeView
                 for item in self.tree.get_children():
                     model_name = self.tree.set(item, "model_name")
                     path_val = self.tree.set(item, "path")
@@ -1145,10 +1028,7 @@ class GUI_MAIN:
 
         if deleted:
             messagebox.showinfo("Success", self.translate("success_delete", len(deleted)))
-            # Update yft_cleaner.deletable_files
-            self.yft_cleaner.deletable_files = [
-                df for df in self.yft_cleaner.deletable_files if df[0] not in deleted
-            ]
+            self.yft_cleaner.deletable_files = [df for df in self.yft_cleaner.deletable_files if df[0] not in deleted]
 
         if failed:
             err_msg = "\n".join([f"{p}: {msg}" for p, msg in failed])
@@ -1158,7 +1038,7 @@ class GUI_MAIN:
 
     def select_all_yft(self):
         """
-        Select (☑) all items in the YFT TreeView.
+        將 YFT TreeView 中所有項目選取 (☑)。
         
         alias: select_all_yft
         """
@@ -1167,7 +1047,7 @@ class GUI_MAIN:
 
     def sort_tree(self, column):
         """
-        Sort the YFT TreeView by the specified column.
+        根據指定欄位排序 YFT TreeView。
         
         alias: sort_tree
         parameter: column (str)
@@ -1200,7 +1080,7 @@ class GUI_MAIN:
     # ------------------------------------#
     def browse_stream_directory(self):
         """
-        Browse for a directory to set the stream root path.
+        瀏覽設定 Stream 根目錄。
         
         alias: browse_stream_directory
         """
@@ -1210,7 +1090,7 @@ class GUI_MAIN:
 
     def start_stream_scan(self):
         """
-        Start scanning for duplicate files in 'stream' folders.
+        開始掃描 'stream' 資料夾中重複的檔案。
         
         alias: start_stream_scan
         """
@@ -1221,7 +1101,6 @@ class GUI_MAIN:
             messagebox.showerror("Error", self.translate("stream_info_no_duplicates"))
             return
 
-        # Clear
         for item in self.stream_tree.get_children():
             self.stream_tree.delete(item)
         if not self.stream_checker:
@@ -1238,19 +1117,16 @@ class GUI_MAIN:
 
     def scan_stream_thread(self):
         """
-        Worker thread to scan duplicates in the background.
+        掃描 Stream 資料夾重複檔案的背景執行緒。
         
         alias: scan_stream_thread
         """
         try:
             all_files = self.stream_checker.find_stream_files(self.stream_root_directory.get())
             self.total_stream_files = len(all_files)
-            # Simple approach: no multi-threading needed to gather duplicates
             duplicates = self.stream_checker.scan_stream_duplicates(self.stream_root_directory.get())
-
             self.processed_stream_files = self.total_stream_files
             self.update_stream_progress()
-
             if duplicates:
                 self.populate_stream_treeview(duplicates)
                 self.status.set(self.translate("stream_status_completed"))
@@ -1261,7 +1137,7 @@ class GUI_MAIN:
 
     def update_stream_progress(self):
         """
-        Update the progress bar and label for the stream scanning.
+        更新 Stream 掃描的進度條與進度文字。
         
         alias: update_stream_progress
         """
@@ -1273,7 +1149,7 @@ class GUI_MAIN:
 
     def populate_stream_treeview(self, duplicates):
         """
-        Populate the stream TreeView with duplicate file information.
+        將重複檔案資訊填入 Stream TreeView。
         
         alias: populate_stream_treeview
         parameter: duplicates (dict)
@@ -1294,7 +1170,7 @@ class GUI_MAIN:
 
     def handle_click_stream(self, event):
         """
-        Handle click event in the Stream TreeView to toggle checkbox in 'select' column.
+        處理 Stream TreeView 點選事件，切換選取框狀態。
         
         alias: handle_click_stream
         parameter: event (Event)
@@ -1312,7 +1188,7 @@ class GUI_MAIN:
 
     def show_stream_context_menu(self, event):
         """
-        Show the right-click context menu for stream items.
+        顯示 Stream 項目的右鍵選單。
         
         alias: show_stream_context_menu
         parameter: event (Event)
@@ -1321,21 +1197,15 @@ class GUI_MAIN:
         if row_id:
             self.stream_tree.selection_set(row_id)
             self.right_clicked_row = row_id
-
-            # Clear previous entries
             self.stream_context_menu.delete(0, tk.END)
-
             duplicate_file = self.stream_tree.set(row_id, "duplicate_file")
             locations_str = self.stream_tree.set(row_id, "locations")
             locations = locations_str.split('; ')
-
-            # Basic menu
             self.stream_context_menu.add_command(
                 label="📂 " + self.translate("view_folder"),
                 command=lambda: self.open_folder_for_stream(duplicate_file, locations[0] if locations else "")
             )
             self.stream_context_menu.add_separator()
-
             for loc in locations:
                 full_path = os.path.join(self.stream_root_directory.get(), loc, duplicate_file)
                 self.stream_context_menu.add_command(
@@ -1346,7 +1216,6 @@ class GUI_MAIN:
                     label=f"🗑️ Delete {loc}",
                     command=lambda path=full_path: self.delete_stream_file(path)
                 )
-
             self.stream_context_menu.add_separator()
             self.stream_context_menu.add_command(
                 label="❌ Delete All Duplicates",
@@ -1358,7 +1227,7 @@ class GUI_MAIN:
 
     def open_folder_for_stream(self, duplicate_file, loc):
         """
-        Open the folder for a specific stream file.
+        開啟指定 stream 檔案所在的資料夾。
         
         alias: open_folder_for_stream
         parameter: duplicate_file (str)
@@ -1369,7 +1238,7 @@ class GUI_MAIN:
 
     def open_folder_for_stream_file(self, file_path):
         """
-        Open the folder containing the given file in the system file manager.
+        在系統檔案總管中開啟所給檔案所在的資料夾。
         
         alias: open_folder_for_stream_file
         parameter: file_path (str)
@@ -1385,15 +1254,12 @@ class GUI_MAIN:
 
     def delete_stream_file(self, file_path):
         """
-        Delete a single stream file, with confirmation.
+        刪除單一 stream 檔案，並提示確認。
         
         alias: delete_stream_file
         parameter: file_path (str)
         """
-        confirm = messagebox.askyesno(
-            self.translate("stream_confirm_delete_title"),
-            f"{self.translate('stream_confirm_delete_message')}\n{file_path}"
-        )
+        confirm = messagebox.askyesno(self.translate("stream_confirm_delete_title"), f"{self.translate('stream_confirm_delete_message')}\n{file_path}")
         if not confirm:
             return
         try:
@@ -1420,7 +1286,6 @@ class GUI_MAIN:
                     locations.remove(rel_loc)
                     if len(locations) <= 1:
                         self.stream_tree.delete(item)
-                        # Also update the dictionary
                         self.stream_checker.duplicate_files.pop(basename, None)
                     else:
                         new_loc_str = '; '.join(locations)
@@ -1435,10 +1300,7 @@ class GUI_MAIN:
         parameter: duplicate_file (str)
         parameter: locations (List[str])
         """
-        confirm = messagebox.askyesno(
-            self.translate("stream_confirm_delete_title"),
-            f"{self.translate('stream_confirm_delete_message')}\n{duplicate_file}"
-        )
+        confirm = messagebox.askyesno(self.translate("stream_confirm_delete_title"), f"{self.translate('stream_confirm_delete_message')}\n{duplicate_file}")
         if not confirm:
             return
         deleted = []
@@ -1457,11 +1319,9 @@ class GUI_MAIN:
                     self.stream_tree.delete(item)
                     break
             self.stream_checker.duplicate_files.pop(duplicate_file, None)
-
         if failed:
             err_msg = "\n".join([f"{p}: {msg}" for p, msg in failed])
             messagebox.showerror("Error", self.translate("stream_error_delete", err_msg))
-
         self.status.set(self.translate("stream_status_completed"))
 
     def copy_stream_to_clipboard(self):
@@ -1542,6 +1402,89 @@ class GUI_MAIN:
         for idx, item_id in enumerate(sorted_items):
             self.stream_tree.move(item_id, '', idx)
 
+    def check_manual_duplicates(self):
+        """
+        1. 讀取 txt_manual 中使用者貼上的「檔案清單」。
+        2. 於 stream_root_directory 下搜尋所有檔案，
+        建立「檔名 -> [所有絕對路徑]」的對照資料，
+        再逐一比對使用者貼上的檔案清單：
+            - 若存在一個副本則顯示路徑，
+            - 若存在多個副本則標示重複並列出所有位置，
+            - 若找不到則標示「NOT FOUND」。
+        3. 將結果寫回 txt_manual (Text widget) 中。
+        
+        alias: check_manual_duplicates
+        parameter: None
+        """
+        stream_root = self.stream_root_directory.get()
+        if not stream_root:
+            messagebox.showwarning("Warning", self.translate("stream_info_no_selected"))
+            return
+
+        if not os.path.isdir(stream_root):
+            messagebox.showerror("Error", self.translate("stream_info_no_files"))
+            return
+
+        if not self.stream_checker:
+            self.stream_checker = StreamDuplicateChecker(self.translator)
+
+        user_text = self.txt_manual.get("1.0", tk.END)
+        file_list = [line.strip() for line in user_text.splitlines() if line.strip()]
+
+        self.txt_manual.delete("1.0", tk.END)
+        self.txt_manual.insert(tk.END, f"{self.translate('manual_check_results')}\n\n")
+        self.root.update_idletasks()
+
+        all_stream_files = self.stream_checker.find_stream_files(stream_root)
+
+        file_map = {}
+        for fp in all_stream_files:
+            basename = os.path.basename(fp)
+            file_map.setdefault(basename, []).append(fp)
+
+        result_lines = []
+        for target_filename in file_list:
+            if target_filename in file_map:
+                found_locations = file_map[target_filename]
+                if len(found_locations) == 1:
+                    result_lines.append(f"{target_filename} -> {found_locations[0]}")
+                else:
+                    result_lines.append(f"{target_filename} ({self.translate('duplicates_label')})")
+                    for loc in found_locations:
+                        result_lines.append(f"   {loc}")
+            else:
+                result_lines.append(f"{target_filename} -> {self.translate('not_found')}")
+        
+        final_output = "\n".join(result_lines)
+        self.txt_manual.insert(tk.END, final_output + "\n")
+
+    def _thread_check_manual_duplicates(self):
+        try:
+            duplicates = self.stream_checker.scan_stream_duplicates(self.stream_root_directory.get())
+            if duplicates:
+                lines = []
+                for file, locs in duplicates.items():
+                    lines.append(f"{file}:")
+                    for loc in locs:
+                        lines.append(f"  {loc}")
+                    lines.append("")
+                result_text = "\n".join(lines)
+            else:
+                result_text = self.translate("stream_info_no_duplicates")
+            self.root.after(0, self._update_text_manual, result_text)
+            self.root.after(0, lambda: self.status.set(self.translate("stream_status_completed")))
+        except Exception as e:
+            self.root.after(0, lambda: messagebox.showerror("Error", f"{self.translate('stream_status_error')} {e}"))
+            self.root.after(0, lambda: self.status.set(self.translate("stream_status_error")))
+
+    def _update_text_manual(self, text):
+        """
+        alias: _update_text_manual
+        parameter: text (str)
+        """
+        self.txt_manual.delete("1.0", tk.END)
+        self.txt_manual.insert(tk.END, text)
+
     # --------------------#
     # Language Switching
     # --------------------#
@@ -1574,7 +1517,6 @@ class GUI_MAIN:
         root = tk.Tk()
         app = GUI_MAIN(root)
         root.mainloop()
-
 
 if __name__ == "__main__":
     GUI_MAIN.main()
