@@ -3,7 +3,7 @@ name: Package Application with Pyinstaller
 on:
   push:
     tags: 
-      - 'v*'          # 若要只觸發 v* 標籤，可改成 ['v*']
+      - 'v*'
   pull_request:
     branches: [ main ]
 
@@ -16,27 +16,24 @@ jobs:
       - name: Package Application
         uses: JackMcKew/pyinstaller-action-windows@main
         with:
-          path: src   # 這裡指向程式的資料夾
+          path: src
 
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: StreamFileAssistant
-          # 將打包後的檔案 (StreamFileAssistant.exe) 放在 src/dist/windows
+          name: StreamFileAssistantEnhanced
           path: src/dist/windows
 
   release:
     needs: build
     runs-on: ubuntu-latest
-    # 只有推標籤( refs/tags/ )時才執行
     if: startsWith(github.ref, 'refs/tags/')
 
     steps:
       - name: Download Build Artifact
         uses: actions/download-artifact@v4
         with:
-          name: StreamFileAssistant
-          # 指定下載後放回同樣位置，確保後續能在同樣路徑找到檔案
+          name: StreamFileAssistantEnhanced
           path: src/dist/windows
 
       - name: Create GitHub Release
@@ -45,7 +42,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          # 只會拿到標籤名 (例如 v1.0.3)，不含 refs/tags/
           tag_name: ${{ github.ref_name }}
           release_name: Release ${{ github.ref_name }}
           draft: false
@@ -54,7 +50,6 @@ jobs:
             ## Version ${{ github.ref_name }}
             The auto-generated release contains the latest StreamFileAssistant executable.
 
-      # 非必要，但常見用來確認下載後的檔案結構是否正確
       - name: List files
         run: ls -R src/dist/windows
 
@@ -64,7 +59,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          # 這裡就是 "下載後" 的檔案路徑
-          asset_path: src/dist/windows/StreamFileAssistant.exe
-          asset_name: StreamFileAssistant.exe
+          asset_path: src/dist/windows/StreamFileAssistantEnhanced.exe
+          asset_name: StreamFileAssistantEnhanced.exe
           asset_content_type: application/octet-stream
