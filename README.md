@@ -1,4 +1,4 @@
-# Stream File Assistant 'Enhanced'
+# Stream File Assistant 'Extended'
 
 ## Introduction
 
