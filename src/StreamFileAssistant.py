@@ -336,7 +336,7 @@ class GUI_MAIN:
     """
     def __init__(self, root):
         self.root = root
-        self.root.title("Stream Files Assistant Enhanced")
+        self.root.title("Stream Files Assistant Extended")
         self.root.geometry("1280x800")
         self.root.resizable(True, True)
 

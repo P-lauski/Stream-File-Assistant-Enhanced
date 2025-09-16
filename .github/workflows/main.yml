@@ -21,7 +21,7 @@ jobs:
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: StreamFileAssistantEnhanced
+          name: StreamFileAssistantExtended
           path: src/dist/windows
 
   release:
@@ -33,7 +33,7 @@ jobs:
       - name: Download Build Artifact
         uses: actions/download-artifact@v4
         with:
-          name: StreamFileAssistantEnhanced
+          name: StreamFileAssistantExtended
           path: src/dist/windows
 
       - name: Create GitHub Release
@@ -48,7 +48,7 @@ jobs:
           prerelease: false
           body: |
             ## Version ${{ github.ref_name }}
-            The auto-generated release contains the latest StreamFileAssistant executable.
+            The auto-generated release contains the latest StreamFileAssistantExtended executable.
 
       - name: List files
         run: ls -R src/dist/windows
@@ -59,6 +59,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: src/dist/windows/StreamFileAssistantEnhanced.exe
-          asset_name: StreamFileAssistantEnhanced.exe
+          asset_path: src/dist/windows/StreamFileAssistantExtended.exe
+          asset_name: StreamFileAssistantExtended.exe
           asset_content_type: application/octet-stream
